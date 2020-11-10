@@ -1,54 +1,36 @@
-﻿using Game.Scripts;
-using System.Collections;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using Game.Scripts;
 
 public class FixStylesErrors : MonoBehaviour
 {
 
-    private Collider myCustomCollider;    
+    private Collider _myCustomCollider;
 
-    public DataClass customData;
+    private DataClass _customData;
 
-    private void FixedUpdate()
+    private SampleScript _sampleScript;
+
+    private readonly string _customName = "fixStylesErrors";
+
+    private void Awake()
     {
+        _customData = new DataClass
+        {
+            sample = 2
+        };
+        _myCustomCollider = GetComponent<Collider>();
 
+        _sampleScript = GetComponent<SampleScript>();
     }
 
     public string SampleParamsFunction(string value)
     {
         return $"Hello, {value}";
     }
-
-    private void LateUpdate()
-    {
-        sampleScript = GetComponent<SampleScript>();
-    }
-
-    protected SampleScript sampleScript;
-
-    private void Start()
-    {
-        customData = new DataClass();
-
-        customData.sample = 2;
-    }
-
+     
     private void simpleFunction()
     {
 
     }
 
-    private void Update()
-    {
-        myCustomCollider = GetComponent<Collider>();
-    }
-
-    internal string customName = "fixStylesErrors";
-
-}
-
-public class DataClass
-{
-    public int sample;
 }
